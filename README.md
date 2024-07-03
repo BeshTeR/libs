@@ -7,6 +7,8 @@ Further documentation can be found at <https://hexdocs.pm/libs>.
 
 ### Oleg Muraviev <avesh.net@bk.ru>  
 
+## [Мои библиотеки](libs)  
+|Библиотека|Описание|
 |----------|--------------------------------|  
 |*num*|Целочисленные алгоритмы|   
 |*prime*|Простые числа|  
