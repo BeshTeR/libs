@@ -10,5 +10,5 @@ Further documentation can be found at <https://hexdocs.pm/libs>.
 ## [Мои библиотеки](libs)  
 |Библиотека|Описание|
 |----------|--------------------------------|  
-|*num*|Целочисленные алгоритмы|   
-|*prime*|Простые числа|  
+|*num*|[Целочисленные алгоритмы](src/num.gleam)|   
+|*primes*|[Простые числа](src/primes.gleam)|  

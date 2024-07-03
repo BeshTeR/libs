@@ -4,6 +4,7 @@
 import gleam/float
 import gleam/int
 import gleam/list
+import gleam/order.{type Order}
 import gleam/result
 
 /// ----------------------------------------------------------------------------
@@ -64,6 +65,11 @@ pub fn pythag(n: Int) -> List(#(Int, Int, Int)) {
   pythag_make(n, n - 1, [])
   |> list.filter(fn(x) {
     x.2 <= n && x.0 * x.0 + x.1 * x.1 == x.2 * x.2 && gcd(x.0, x.1) == 1
+  })
+  |> list.sort(fn(a, b: #(Int, Int, Int)) -> Order {
+    let #(x, _, _) = a
+    let #(y, _, _) = b
+    int.compare(x, y)
   })
 }
 
