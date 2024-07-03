@@ -1,5 +1,6 @@
-import gleam/io
+import num
+import prime
 
 pub fn main() {
-  io.println("Hello from libs!")
+  Nil
 }
