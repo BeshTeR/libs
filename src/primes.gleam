@@ -27,7 +27,7 @@ fn is_iter(n, acc: Int) -> Bool {
 }
 
 /// ----------------------------------------------------------------------------
-/// N-е прлстое число
+/// N-е простое число
 pub fn nth(n: Int) -> Result(Int, String) {
   case n {
     _ if n < 1 -> Error("Invalid index of a prime number")
