@@ -2,6 +2,7 @@
 //// Oleg Muraviev <avesh.net@bk.ru>
 
 import gleam/bool
+import gleam/int
 import gleam/list
 
 /// ----------------------------------------------------------------------------
@@ -28,20 +29,37 @@ fn is_iter(n, acc: Int) -> Bool {
 /// ----------------------------------------------------------------------------
 /// Разложение натурального числа на простые множители
 pub fn factors(n: Int) -> List(Int) {
-  case n <= 1 {
+  case n < 2 {
     True -> []
-    False -> factors_iter(n, #(2, []))
+    False ->
+      case int.is_even(n) {
+        True -> factors_2([2], n / 2)
+        False -> #([], n)
+      }
+      |> factors_odd(3)
   }
 }
 
-fn factors_iter(n: Int, res: #(Int, List(Int))) -> List(Int) {
-  let #(m, ls) = res
+fn factors_2(acc: List(Int), n: Int) -> #(List(Int), Int) {
+  case int.is_even(n) {
+    True -> factors_2([2, ..acc], n / 2)
+    False -> #(acc, n)
+  }
+}
+
+fn factors_odd(acc: #(List(Int), Int), m: Int) -> List(Int) {
+  let #(ls, n) = acc
   case m * m > n {
-    True -> [n, ..ls] |> list.reverse()
+    True ->
+      case n {
+        1 -> ls
+        _ -> [n, ..ls]
+      }
+      |> list.reverse()
     False ->
       case n % m == 0 {
-        True -> factors_iter(n / m, #(m, [m, ..ls]))
-        False -> factors_iter(n, #(m + 1, ls))
+        True -> factors_odd(#([m, ..ls], n / m), m)
+        False -> factors_odd(acc, m + 2)
       }
   }
 }
