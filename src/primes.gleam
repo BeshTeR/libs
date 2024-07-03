@@ -27,6 +27,24 @@ fn is_iter(n, acc: Int) -> Bool {
 }
 
 /// ----------------------------------------------------------------------------
+/// N-е прлстое число
+pub fn nth(n: Int) -> Result(Int, String) {
+  case n {
+    _ if n < 1 -> Error("Invalid index of a prime number")
+    1 -> Ok(2)
+    _ -> nth_iter(n, 3, 2)
+  }
+}
+
+fn nth_iter(n, m, k: Int) -> Result(Int, String) {
+  case k == n, is(m) {
+    True, True -> Ok(m)
+    False, True -> nth_iter(n, m + 2, k + 1)
+    _, False -> nth_iter(n, m + 2, k)
+  }
+}
+
+/// ----------------------------------------------------------------------------
 /// Разложение натурального числа на простые множители
 pub fn factors(n: Int) -> List(Int) {
   case n < 2 {

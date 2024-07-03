@@ -22,6 +22,25 @@ pub fn is_test() {
   |> should.equal(primes.is(997))
 }
 
+pub fn nth_test() {
+  Error("Invalid index of a prime number")
+  |> should.equal(primes.nth(0))
+  Ok(2)
+  |> should.equal(primes.nth(1))
+  Ok(3)
+  |> should.equal(primes.nth(2))
+  Ok(5)
+  |> should.equal(primes.nth(3))
+  Ok(7)
+  |> should.equal(primes.nth(4))
+  Ok(11)
+  |> should.equal(primes.nth(5))
+  Ok(29)
+  |> should.equal(primes.nth(10))
+  Ok(97)
+  |> should.equal(primes.nth(25))
+}
+
 pub fn factors_test() {
   []
   |> should.equal(primes.factors(0))
@@ -31,10 +50,10 @@ pub fn factors_test() {
   |> should.equal(primes.factors(2))
   [3]
   |> should.equal(primes.factors(3))
-  [2, 2]
-  |> should.equal(primes.factors(4))
-  [2, 5]
-  |> should.equal(primes.factors(10))
+  [2, 2, 2]
+  |> should.equal(primes.factors(8))
+  [2, 5, 5]
+  |> should.equal(primes.factors(50))
   [11]
   |> should.equal(primes.factors(11))
   [3, 11]
